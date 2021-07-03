@@ -10,8 +10,8 @@ const SearchResults = ({ incidents }) => {
           key={incidentIdx}
           title={incident.title}
           description={incident.description}
-          occurredAt={incident.occurredAt}
-          updatedAt={incident.updatedAt}
+          occurredAt={incident.occurred_at}
+          updatedAt={incident.updated_at}
         />
       ))}
       pagination

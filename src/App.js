@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     fetch(
-      "https://bikewise.org/api/v2/incidents?page=1&per_page=10&incident_type=theft&proximity=berlin"
+      "https://bikewise.org:443/api/v2/incidents?page=1&per_page=10&incident_type=theft&proximity=berlin"
     )
       .then((response) => response.json())
       .then((jsonResponse) => {
