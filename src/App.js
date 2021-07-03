@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import SearchForm from "./components/SearchForm/SearchForm";
+import SearchResults from "./components/SearchResults/SearchResults";
 
-function App() {
+const App = () => {
+  const [incidents, setIncidents] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://bikewise.org/api/v2/incidents?page=1&per_page=10&incident_type=theft&proximity=berlin"
+    )
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        setIncidents(jsonResponse.incidents);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>Police Department of Berlin</header>
+      <SearchForm />
+      <SearchResults incidents={incidents} />
     </div>
   );
-}
+};
 
 export default App;
