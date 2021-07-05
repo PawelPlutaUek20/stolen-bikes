@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import SearchResults from "../SearchResults/SearchResults";
+import Header from "../Header/Header";
+
+import { Container, Grid, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    minWidth: 640,
+  },
+}));
 
 const App = () => {
+  const classes = useStyles();
+
   const [incidents, setIncidents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -24,17 +35,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <header>Police Department of Berlin</header>
-      <SearchForm />
-      {loading ? (
-        <div>loading...</div>
-      ) : error ? (
-        <div>{error}</div>
-      ) : (
-        <SearchResults incidents={incidents} />
-      )}
-    </div>
+    <Container maxWidth="md" className={classes.container}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Header />
+        </Grid>
+
+        <Grid item xs={12}>
+          <SearchForm />
+        </Grid>
+
+        <Grid item xs={12}>
+          {loading ? (
+            <div>loading...</div>
+          ) : error ? (
+            <div>{error}</div>
+          ) : incidents.length === 0 ? (
+            <div>No results</div>
+          ) : (
+            <SearchResults incidents={incidents} />
+          )}
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
