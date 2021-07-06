@@ -78,7 +78,11 @@ const IncidentCard = ({ incident }) => {
       </div>
       <div direction="column" className={classes.contentContainer}>
         <Typography className={classes.title} gutterBottom variant="h6">
-          <Link className={classes.link} underline="always" href="#">
+          <Link
+            className={classes.link}
+            underline="always"
+            href={`/case/${incident.id}`}
+          >
             {incident.title}
           </Link>
         </Typography>
@@ -93,20 +97,18 @@ const IncidentCard = ({ incident }) => {
 
         <Typography gutterBottom variant="body1" className={classes.title}>
           {`${new Date(incident.occurred_at * 1000).toLocaleDateString(
-            "de-DE",
-            { year: "numeric", month: "2-digit", day: "2-digit" }
+            "en-US",
+            {
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+              weekday: "short",
+            }
           )} - ${incident.address} `}
         </Typography>
         <Typography variant="caption" className={classes.reported}>
           {`Reported: ${new Date(incident.updated_at * 1000).toLocaleString(
-            "de-DE",
-            {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-              hour: "2-digit",
-              minute: "2-digit",
-            }
+            "en-US"
           )}`}
         </Typography>
       </div>

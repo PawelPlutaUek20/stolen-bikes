@@ -1,7 +1,9 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import IncidentCard from "../IncidentCard/IncidentCard";
 import { Pagination } from "@material-ui/lab";
+import { useHistory, useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 const useStyles = makeStyles((theme) => ({
   total: {
@@ -15,7 +17,17 @@ const useStyles = makeStyles((theme) => ({
 const SearchResults = ({ incidents }) => {
   const classes = useStyles();
 
-  const [page, setPage] = useState(1);
+  const history = useHistory();
+  const location = useLocation();
+  const page = parseInt(queryString.parse(location.search).page) || 1;
+
+  const handlePagination = (_, page) => {
+    const newQueryString = queryString.stringify({
+      ...queryString.parse(location.search),
+      page,
+    });
+    history.push(`/?${newQueryString}`);
+  };
 
   return (
     <Grid container spacing={2}>
@@ -38,7 +50,7 @@ const SearchResults = ({ incidents }) => {
       <Grid item container xs={12} justify="center">
         <Pagination
           size="large"
-          onChange={(_, page) => setPage(page)}
+          onChange={handlePagination}
           page={page}
           className={classes.pagination}
           count={Math.ceil(incidents.length / 10)}
