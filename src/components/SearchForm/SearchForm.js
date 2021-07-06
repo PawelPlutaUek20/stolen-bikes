@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     width: "22%",
   },
   buttonField: {
-    maxHeight: 56,
+    maxHeight: 36,
     width: "20%",
     marginTop: 12,
   },

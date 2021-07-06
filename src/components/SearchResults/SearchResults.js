@@ -27,7 +27,7 @@ const SearchResults = ({ incidents }) => {
 
       <Grid item xs={12}>
         <Grid container spacing={2} direction="column">
-          {incidents.map((incident) => (
+          {incidents.slice((page - 1) * 10, page * 10).map((incident) => (
             <Grid item key={incident.id}>
               <IncidentCard incident={incident} />
             </Grid>
