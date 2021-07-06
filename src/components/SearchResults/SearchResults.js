@@ -1,15 +1,15 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import IncidentCard from "../IncidentCard/IncidentCard";
-import { Pagination } from '@material-ui/lab';
+import { Pagination } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   total: {
     textAlign: "end",
   },
   pagination: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const SearchResults = ({ incidents }) => {
@@ -36,7 +36,15 @@ const SearchResults = ({ incidents }) => {
       </Grid>
 
       <Grid item container xs={12} justify="center">
-        <Pagination size="large" onChange={(_, page) => setPage(page)} page={page} className={classes.pagination} count={Math.ceil(incidents.length / 10)} showFirstButton showLastButton />
+        <Pagination
+          size="large"
+          onChange={(_, page) => setPage(page)}
+          page={page}
+          className={classes.pagination}
+          count={Math.ceil(incidents.length / 10)}
+          showFirstButton
+          showLastButton
+        />
       </Grid>
     </Grid>
   );

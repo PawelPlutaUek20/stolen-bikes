@@ -3,15 +3,15 @@ import SearchForm from "../SearchForm/SearchForm";
 import SearchResults from "../SearchResults/SearchResults";
 import Header from "../Header/Header";
 
-import { Container, Grid, makeStyles } from "@material-ui/core";
+import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     minWidth: 640,
   },
   header: {
-    marginTop: 24
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const App = () => {
@@ -48,11 +48,17 @@ const App = () => {
 
         <Grid item xs={12}>
           {loading ? (
-            <div>loading...</div>
+            <Typography variant="body1" gutterBottom>
+              Loading...
+            </Typography>
           ) : error ? (
-            <div>{error}</div>
+            <Typography variant="body1" gutterBottom color="error">
+              {error}
+            </Typography>
           ) : incidents.length === 0 ? (
-            <div>No results</div>
+            <Typography variant="body1" gutterBottom>
+              No results
+            </Typography>
           ) : (
             <SearchResults incidents={incidents} />
           )}

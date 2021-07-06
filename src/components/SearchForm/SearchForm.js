@@ -6,7 +6,7 @@ import {
 } from "@material-ui/pickers";
 import { Grid, TextField, Button, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   textField: {
     width: "31%",
   },
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     width: "20%",
     marginTop: 12,
   },
-}));
+});
 
 const SearchForm = () => {
   const classes = useStyles();
@@ -42,7 +42,7 @@ const SearchForm = () => {
           format="dd.MM.yyyy"
           label="From"
           value={fromDate}
-          onChange={setFromDate}
+          onChange={(date) => setFromDate(date)}
         />
         <KeyboardDatePicker
           className={classes.inputField}
@@ -53,7 +53,7 @@ const SearchForm = () => {
           format="dd.MM.yyyy"
           label="To"
           value={toDate}
-          onChange={setToDate}
+          onChange={(date) => setToDate(date)}
         />
       </MuiPickersUtilsProvider>
       <Button
