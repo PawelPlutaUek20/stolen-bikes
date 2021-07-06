@@ -6,17 +6,15 @@ import { createMuiTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
 
 const theme = createMuiTheme({
   palette: {
-    type: "light",
+    type: "dark",
   },
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
   document.getElementById("root")
 );
 

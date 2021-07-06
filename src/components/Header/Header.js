@@ -28,7 +28,7 @@ const Header = () => {
         <Typography variant="h4" gutterBottom>
           Police Departament of Berlin
         </Typography>
-        <Typography variant="h5">Stolen Bykes</Typography>
+        <Typography variant="h5">Stolen bykes</Typography>
       </div>
     </header>
   );

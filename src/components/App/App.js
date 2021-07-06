@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     minWidth: 640,
   },
+  header: {
+    marginTop: 24
+  }
 }));
 
 const App = () => {
@@ -20,9 +23,7 @@ const App = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      "https://bikewise.org:443/api/v2/incidents?page=1&per_page=10&incident_type=theft&proximity=berlin"
-    )
+    fetch("http://localhost:3000/db.json")
       .then((response) => response.json())
       .then((jsonResponse) => {
         setLoading(false);
@@ -36,8 +37,8 @@ const App = () => {
 
   return (
     <Container maxWidth="md" className={classes.container}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
+      <Grid container spacing={6}>
+        <Grid item xs={12} className={classes.header}>
           <Header />
         </Grid>
 

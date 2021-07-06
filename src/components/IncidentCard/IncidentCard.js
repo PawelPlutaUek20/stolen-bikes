@@ -1,6 +1,6 @@
-import { Paper, Typography, makeStyles } from "@material-ui/core";
+import { Paper, Typography, makeStyles, Link } from "@material-ui/core";
 import React from "react";
-import bike from "./bike.svg";
+import BikeIcon from "./BikeIcon";
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   description: {
     display: "-webkit-box",
     boxOrient: "vertical",
-    lineClamp: 4,
+    lineClamp: 3,
     wordBreak: "break-all",
     overflow: "hidden",
   },
@@ -37,6 +37,23 @@ const useStyles = makeStyles((theme) => ({
     height: 200,
     padding: 25,
   },
+  svg: {
+    backgroundColor: theme.palette.action.hover,
+    fill: theme.palette.background.paper,
+    width: 150,
+    height: 150,
+  },
+  reported: {
+    marginTop: "auto",
+    alignSelf: "flex-end",
+    fontStyle: "italic",
+  },
+  centerImage: {
+    padding: 25,
+  },
+  link: {
+    color: theme.palette.info.light,
+  },
 }));
 
 const IncidentCard = ({ incident }) => {
@@ -46,18 +63,24 @@ const IncidentCard = ({ incident }) => {
     <Paper className={classes.paper}>
       <div className={classes.imageContainer}>
         {incident.media.image_url_thumb ? (
-          <img
-            alt="bike"
-            src={incident.media.image_url_thumb}
-            className={classes.image}
-          />
+          <div>
+            <img
+              alt="bike"
+              src={incident.media.image_url_thumb}
+              className={classes.image}
+            />
+          </div>
         ) : (
-          <img alt="bike" src={bike} className={classes.image} />
+          <div className={classes.centerImage}>
+            <BikeIcon className={classes.svg} />
+          </div>
         )}
       </div>
       <div direction="column" className={classes.contentContainer}>
         <Typography className={classes.title} gutterBottom variant="h6">
-          {incident.title}
+          <Link className={classes.link} underline="always" href="#">
+            {incident.title}
+          </Link>
         </Typography>
 
         <Typography
@@ -68,10 +91,23 @@ const IncidentCard = ({ incident }) => {
           {incident.description || "No description"}
         </Typography>
 
-        <Typography gutterBottom variant="body1">
-          {`${new Date(incident.occurred_at * 1000).toLocaleDateString()} - ${
-            incident.address
-          } `}
+        <Typography gutterBottom variant="body1" className={classes.title}>
+          {`${new Date(incident.occurred_at * 1000).toLocaleDateString(
+            "de-DE",
+            { year: "numeric", month: "2-digit", day: "2-digit" }
+          )} - ${incident.address} `}
+        </Typography>
+        <Typography variant="caption" className={classes.reported}>
+          {`Reported: ${new Date(incident.updated_at * 1000).toLocaleString(
+            "de-DE",
+            {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+            }
+          )}`}
         </Typography>
       </div>
     </Paper>
