@@ -1,14 +1,15 @@
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
+import Map from "../Map/Map"
 
 const useStyles = makeStyles((theme) => ({
   bold: {
     fontWeight: 600,
   },
   map: {
-    width: 640,
-    height: 280,
+    width: "100%",
+    height: "50vh",
     backgroundColor: theme.palette.action.hover
   },
 }));
@@ -26,7 +27,7 @@ const SearchDetailResult = ({ incident }) => {
         <Typography display="inline" variant="body1" className={classes.bold}>
           Stolen
         </Typography>
-        <Typography display="inline" variant="body1" gutterBottom>
+        <Typography display="inline" variant="body1">
           {` ${new Date(incident.occurred_at * 1000).toLocaleString("en-US", {
             month: "short",
             day: "2-digit",
@@ -37,8 +38,10 @@ const SearchDetailResult = ({ incident }) => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} className={classes.map}>
-        <div>Map</div>
+      <Grid item xs={12} >
+        <div className={classes.map}>
+          <Map address={incident.address}/>
+        </div>
       </Grid>
 
       <Grid item xs={12}>
