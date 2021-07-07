@@ -20,17 +20,20 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchForm = () => {
+const SearchForm = ({ loading, handleClick }) => {
   const classes = useStyles();
 
+  const [query, setQuery] = useState("");
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
   return (
     <Grid container spacing={2} justify="space-between">
       <TextField
+        value={query}
         className={classes.textField}
         label="Search case descriptions"
+        onChange={(e) => setQuery(e.target.value)}
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -60,6 +63,14 @@ const SearchForm = () => {
         color="primary"
         className={classes.buttonField}
         variant="contained"
+        disabled={loading}
+        onClick={() =>
+          handleClick(
+            query || "",
+            fromDate ? new Date(fromDate).getTime() / 1000 : "",
+            toDate ? new Date(toDate).getTime() / 1000 : ""
+          )
+        }
       >
         Find cases
       </Button>

@@ -21,9 +21,15 @@ const PageIndex = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
+  const fetchIncidents = (
+    query = "",
+    occurred_after = "",
+    occurred_before = ""
+  ) => {
     setLoading(true);
-    fetch("http://localhost:3000/db.json")
+    fetch(
+      `https://bikewise.org:443/api/v2/incidents?incident_type=theft&query=${query}&occurred_after=${occurred_after}&occurred_before=${occurred_before}&page=1&per_page=22&proximity=Berlin`
+    )
       .then((response) => response.json())
       .then((jsonResponse) => {
         setLoading(false);
@@ -33,6 +39,10 @@ const PageIndex = () => {
         setLoading(false);
         setError("Ooops, something went wrong");
       });
+  };
+
+  useEffect(() => {
+    fetchIncidents();
   }, []);
 
   return (
@@ -43,7 +53,7 @@ const PageIndex = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <SearchForm />
+          <SearchForm loading={loading} handleClick={fetchIncidents} />
         </Grid>
 
         <Grid item xs={12}>

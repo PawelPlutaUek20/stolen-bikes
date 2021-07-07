@@ -24,14 +24,11 @@ const PageDetail = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/db.json`)
+    fetch(`https://bikewise.org:443/api/v2/incidents/${id}`)
       .then((response) => response.json())
       .then((jsonResponse) => {
         setLoading(false);
-        setIncident(
-          jsonResponse.incidents.find((e) => parseInt(e.id) === parseInt(id)) ||
-            []
-        );
+        setIncident(jsonResponse.incident);
       })
       .catch((_) => {
         setLoading(false);
