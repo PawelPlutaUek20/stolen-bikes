@@ -5,7 +5,7 @@ import PageDetail from "../PageDetail/PageDetail";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/" exact component={PageIndex} />
         <Route path="/case/:id" component={PageDetail} />
