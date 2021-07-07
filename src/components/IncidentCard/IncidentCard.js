@@ -1,5 +1,6 @@
 import { Paper, Typography, makeStyles, Link } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import BikeIcon from "./BikeIcon";
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 const IncidentCard = ({ incident }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Paper className={classes.paper}>
@@ -81,7 +83,8 @@ const IncidentCard = ({ incident }) => {
           <Link
             className={classes.link}
             underline="always"
-            href={`/case/${incident.id}`}
+            onClick={() => history.push(`/case/${incident.id}`)}
+            href="#"
           >
             {incident.title}
           </Link>
