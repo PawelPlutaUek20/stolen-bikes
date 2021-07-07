@@ -1,8 +1,9 @@
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Header from "../Header/Header";
-import SearchDetailResult from "../SearchDetailResults/SearchDetailResult";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import SearchResults from "../../components/SearchResults/SearchResults";
+import Header from "../../components/Header/Header";
+
+import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -13,34 +14,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PageDetail = () => {
+const PageIndex = () => {
   const classes = useStyles();
 
-  const { id } = useParams();
-
-  const [incident, setIncident] = useState([]);
+  const [incidents, setIncidents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
+  const fetchIncidents = (
+    query = "",
+    occurred_after = "",
+    occurred_before = ""
+  ) => {
     setLoading(true);
-    fetch(`https://bikewise.org:443/api/v2/incidents/${id}`)
+    fetch(
+      `https://bikewise.org:443/api/v2/incidents?incident_type=theft&query=${query}&occurred_after=${occurred_after}&occurred_before=${occurred_before}&page=1&per_page=22&proximity=Berlin`
+    )
       .then((response) => response.json())
       .then((jsonResponse) => {
         setLoading(false);
-        setIncident(jsonResponse.incident);
+        setIncidents(jsonResponse.incidents);
       })
-      .catch((_) => {
+      .catch((e) => {
         setLoading(false);
         setError("Ooops, something went wrong");
       });
-  }, [id]);
+  };
+
+  useEffect(() => {
+    fetchIncidents();
+  }, []);
 
   return (
     <Container maxWidth="md" className={classes.container}>
       <Grid container spacing={6}>
         <Grid item xs={12} className={classes.header}>
           <Header />
+        </Grid>
+
+        <Grid item xs={12}>
+          <SearchForm loading={loading} handleClick={fetchIncidents} />
         </Grid>
 
         <Grid item xs={12}>
@@ -52,12 +65,12 @@ const PageDetail = () => {
             <Typography variant="body1" gutterBottom color="error">
               {error}
             </Typography>
-          ) : incident.length === 0 ? (
+          ) : incidents.length === 0 ? (
             <Typography variant="body1" gutterBottom>
               No results
             </Typography>
           ) : (
-            <SearchDetailResult incident={incident} />
+            <SearchResults incidents={incidents} />
           )}
         </Grid>
       </Grid>
@@ -65,4 +78,4 @@ const PageDetail = () => {
   );
 };
 
-export default PageDetail;
+export default PageIndex;
