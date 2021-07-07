@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/stolen-bikes/static/js/main.6cfd7ce1.chunk.js",
-    "main.js.map": "/stolen-bikes/static/js/main.6cfd7ce1.chunk.js.map",
+    "main.js": "/stolen-bikes/static/js/main.f7c90fa9.chunk.js",
+    "main.js.map": "/stolen-bikes/static/js/main.f7c90fa9.chunk.js.map",
     "runtime-main.js": "/stolen-bikes/static/js/runtime-main.f7570f3c.js",
     "runtime-main.js.map": "/stolen-bikes/static/js/runtime-main.f7570f3c.js.map",
     "static/css/2.9bf3e30e.chunk.css": "/stolen-bikes/static/css/2.9bf3e30e.chunk.css",
-    "static/js/2.d8356c5b.chunk.js": "/stolen-bikes/static/js/2.d8356c5b.chunk.js",
-    "static/js/2.d8356c5b.chunk.js.map": "/stolen-bikes/static/js/2.d8356c5b.chunk.js.map",
+    "static/js/2.c6e08c65.chunk.js": "/stolen-bikes/static/js/2.c6e08c65.chunk.js",
+    "static/js/2.c6e08c65.chunk.js.map": "/stolen-bikes/static/js/2.c6e08c65.chunk.js.map",
     "static/js/3.9bfe5fd8.chunk.js": "/stolen-bikes/static/js/3.9bfe5fd8.chunk.js",
     "static/js/3.9bfe5fd8.chunk.js.map": "/stolen-bikes/static/js/3.9bfe5fd8.chunk.js.map",
     "index.html": "/stolen-bikes/index.html",
     "static/css/2.9bf3e30e.chunk.css.map": "/stolen-bikes/static/css/2.9bf3e30e.chunk.css.map",
-    "static/js/2.d8356c5b.chunk.js.LICENSE.txt": "/stolen-bikes/static/js/2.d8356c5b.chunk.js.LICENSE.txt",
+    "static/js/2.c6e08c65.chunk.js.LICENSE.txt": "/stolen-bikes/static/js/2.c6e08c65.chunk.js.LICENSE.txt",
     "static/media/logo.114a8706.svg": "/stolen-bikes/static/media/logo.114a8706.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f7570f3c.js",
     "static/css/2.9bf3e30e.chunk.css",
-    "static/js/2.d8356c5b.chunk.js",
-    "static/js/main.6cfd7ce1.chunk.js"
+    "static/js/2.c6e08c65.chunk.js",
+    "static/js/main.f7c90fa9.chunk.js"
   ]
 }
